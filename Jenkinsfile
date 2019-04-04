@@ -11,6 +11,7 @@ pipeline {
         writeFile file: "application.sh", text: "echo Built ${BUILD_ID} of ${JOB_NAME}"
         archiveArtifacts 'application.sh'
         gateProducesArtifact file: 'application.sh', label: 'Dummy artifact to be consumed by Deploy (master branch) gate'
+        error 'fake error to force failure in test stage/gate'
       }
     }
     stage('Test') {
